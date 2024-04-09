@@ -1,0 +1,62 @@
+---
+const response = await fetch("https://leetcode-api-faisalshohag.vercel.app/egromero",
+  {
+    method: 'GET',
+    headers: {
+        'Content-Type':'application/json',
+        'Authorization': 'Bearer '+ import.meta.env.gh_token,},
+    });
+
+const {totalSolved, 
+        easySolved, 
+        totalEasy, 
+        mediumSolved, 
+        totalMedium,
+        hardSolved, 
+        totalHard,
+        recentSubmissions} = await response.json();
+const easyBeat = Math.round((easySolved / totalEasy) * 100);
+const mediumBeat = Math.round((mediumSolved / totalMedium) * 100);
+const hardBeat = Math.round((hardSolved / totalHard) * 100);
+---
+
+<div class="text-white font-bold text-xs">
+<!-- Solved Problems Section -->
+    <div class="flex items-center justify-between mb-4">
+        <div>LeetCode Solved Problems</div>
+        <div>{totalSolved}</div>
+    </div>
+
+    <!-- Easy Problems -->
+    <div class="mb-2">
+        <div class="flex justify-between mb-1">
+        <span>Easy</span>
+        <span>{easySolved}/{totalEasy} Beats {easyBeat}%</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-green-600 h-2.5 rounded-full" style=`width:${easyBeat}%`></div>
+        </div>
+    </div>
+
+    <!-- Medium Problems -->
+    <div class="mb-2">
+        <div class="flex justify-between mb-1">
+        <span>Medium</span>
+        <span>{mediumSolved}/{totalMedium} {hardBeat ? `${mediumBeat}%` : "Not enough data"} </span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Hard Problems -->
+    <div class="mb-2">
+        <div class="flex justify-between mb-1">
+        <span>Hard</span>
+        <span>{hardSolved}/{totalHard} {hardBeat ? `${hardBeat}%` : "Not enough data"}</span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+        </div>
+    </div>
+</div>

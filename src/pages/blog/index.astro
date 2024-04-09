@@ -34,7 +34,7 @@ const posts = (await getCollection("blog")).sort(
     <ul class="w-full">
       {
         posts.map((post) => {
-          const truncatedTitle = post.data.title.length > 70 ? post.data.title.substring(0, 70) + "..." : post.data.title
+          const truncatedTitle = post.data.title.length > 45 ? post.data.title.substring(0, 45) + "..." : post.data.title
           return (
             <PostRow
           title={truncatedTitle}

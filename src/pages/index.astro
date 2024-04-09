@@ -5,6 +5,9 @@ import IntroCard from "../components/IntroCard.astro";
 import AboutMe from "../components/AboutMe.astro";
 import Now from "../components/Now.astro";
 import ContributionMap from "../components/ContributionMap.astro";
+import LeetCode from "../components/leetCode.astro";
+import LeetCodeLast from "../components/leetCodeLast.astro";
+import Contribution from "./contribution.astro";
 ---
 
 <script>
@@ -42,12 +45,16 @@ import ContributionMap from "../components/ContributionMap.astro";
     <Card
     colSpan="md:col-span-1"
     rowSpan="md:row-span-2"
-    title="Blog"
+    title="More about me"
     href="/blog"
     />
     <Card colSpan="md:col-span-1" rowSpan="md:row-span-2">
       <ContributionMap />
     </Card>
     <Now />
+    <Card colSpan="md:col-span-3" rowSpan="md:row-span-2">
+      <LeetCode />
+    </Card>
+    <LeetCodeLast />
   </main>
 </Layout>
