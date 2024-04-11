@@ -8,7 +8,6 @@ const response = await fetch("https://leetcode-api-faisalshohag.vercel.app/egrom
         'Authorization': 'Bearer '+ import.meta.env.gh_token,},
     });
 const {recentSubmissions} = await response.json();
-console.log(recentSubmissions);
 const lastSubmission = recentSubmissions[0];
 ---
 <Card colSpan="md:col-span-1" rowSpan="md:row-span-2" title="Last LeetCode Solve">

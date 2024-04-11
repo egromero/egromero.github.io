@@ -6,21 +6,17 @@ const response = await fetch("https://leetcode-api-faisalshohag.vercel.app/egrom
         'Content-Type':'application/json',
         'Authorization': 'Bearer '+ import.meta.env.gh_token,},
     });
-
+const totalGoal = 100
 const {totalSolved, 
         easySolved, 
-        totalEasy, 
-        mediumSolved, 
-        totalMedium,
-        hardSolved, 
-        totalHard,
-        recentSubmissions} = await response.json();
-const easyBeat = Math.round((easySolved / totalEasy) * 100);
-const mediumBeat = Math.round((mediumSolved / totalMedium) * 100);
-const hardBeat = Math.round((hardSolved / totalHard) * 100);
+        mediumSolved,
+        hardSolved } = await response.json();
+const easyBeat = Math.round((easySolved / totalGoal) * 100);
+const mediumBeat = Math.round((mediumSolved / totalGoal) * 100);
+const hardBeat = Math.round((hardSolved / totalGoal) * 100);
 ---
 
-<div class="text-white font-bold text-xs">
+<div class="text-white font-bold text-xs overflow-y-scroll">
 <!-- Solved Problems Section -->
     <div class="flex items-center justify-between mb-4">
         <div>LeetCode Solved Problems</div>
@@ -31,7 +27,7 @@ const hardBeat = Math.round((hardSolved / totalHard) * 100);
     <div class="mb-2">
         <div class="flex justify-between mb-1">
         <span>Easy</span>
-        <span>{easySolved}/{totalEasy} Beats {easyBeat}%</span>
+        <span>{easySolved}/{totalGoal} Beats {easyBeat}%</span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
         <div class="bg-green-600 h-2.5 rounded-full" style=`width:${easyBeat}%`></div>
@@ -42,10 +38,10 @@ const hardBeat = Math.round((hardSolved / totalHard) * 100);
     <div class="mb-2">
         <div class="flex justify-between mb-1">
         <span>Medium</span>
-        <span>{mediumSolved}/{totalMedium} {hardBeat ? `${mediumBeat}%` : "Not enough data"} </span>
+        <span>{mediumSolved}/{totalGoal} {mediumBeat ? `${mediumBeat}%` : "Not enough data"} </span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
-        <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 0%"></div>
+        <div class="bg-yellow-600 h-2.5 rounded-full" style=`width: ${mediumBeat}%`></div>
         </div>
     </div>
 
@@ -53,10 +49,10 @@ const hardBeat = Math.round((hardSolved / totalHard) * 100);
     <div class="mb-2">
         <div class="flex justify-between mb-1">
         <span>Hard</span>
-        <span>{hardSolved}/{totalHard} {hardBeat ? `${hardBeat}%` : "Not enough data"}</span>
+        <span>{hardSolved}/{totalGoal} {hardBeat ? `${hardBeat}%` : "Not enough data"}</span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2.5 dark:bg-gray-700">
-        <div class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+        <div class="bg-red-600 h-2.5 rounded-full" style=`width: ${hardBeat}%`></div>
         </div>
     </div>
 </div>
